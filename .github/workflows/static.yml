@@ -26,7 +26,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      # url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,11 +36,11 @@ jobs:
         with:
           dotnet-version: 8.x
       - name: Restore dependency
-        run: dotnet restore Pomodoro.Server
+        run: dotnet restore PomodoroCICD.Server
       - name: Build project
-        run: dotnet build -c Release --no-restore Pomodoro.Server
+        run: dotnet build -c Release --no-restore PomodoroCICD.Server
       - name: publish project
-        run: dotnet publish Pomodoro.Server -c Release -o ./publish
+        run: dotnet publish PomodoroCICD.Server  -c Release -o ./publish
       # - name: Deploy to GitHub Pages
       #   id: deployment
       #   uses: actions/deploy-pages@v4
