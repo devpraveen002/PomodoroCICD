@@ -1,0 +1,6 @@
+@PomodoroCICD.Server_HostAddress = http://localhost:5234
+
+GET {{PomodoroCICD.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
