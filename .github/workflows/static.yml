@@ -31,13 +31,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          dotnet-version: 8.x
+      - name: Restore dependency
+        run: dotnet restore Pomodoro.Server
+      - name: Build project
+        run: dotnet build -c Release --no-restore Pomodoro.Server
+      - name: publish project
+        run: dotnet publish Pomodoro.Server -c Release -o ./publish
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v4
